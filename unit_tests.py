@@ -1,38 +1,20 @@
-#!/usr/bin/python3
-
 import unittest
-from calculator import cal, add
 
-class TestCalculator(unittest.TestCase):
-    '''Testing the calculator'''
+class TestStringMethods(unittest.TestCase):
 
-    def setUp(self):
-        '''Set up testing objects'''
-        self.a = 439
-        self.b = 4
+    def test_upper(self):
+        self.assertEqual('foo'.upper(), 'FOO')
 
-    def test_add(self):
-        '''Testing add menthod'''
-        calculator = cal(self.a, self.b)
-        # print(calculator.add())
+    def test_isupper(self):
+        self.assertTrue('FOO'.isupper())
+        self.assertFalse('Foo'.isupper())
 
-        self.assertEqual(calculator.add(),443)
-
-    def test_subtract(self):
-        '''Testing subtract method'''
-        calculator = cal(self.a, self.b)
-        self.assertEqual(calculator.sub(), 435)
-
-class TestAdd(unittest.TestCase):
-    def test_add_function(self):
-        self.assertEqual(add([1,2,3]), 6)
-
-    # This test will fail
-    # TODO: Improve the add function to ensure only array of numbers
-    '''
-    def test_add_function(self):
-        self.assertEqual(add([1,'test',3]), 6)
-    '''
+    def test_split(self):
+        s = 'hello world'
+        self.assertEqual(s.split(), ['hello', 'world'])
+        # check that s.split fails when the separator is not a string
+        with self.assertRaises(TypeError):
+            s.split(2)
 
 if __name__ == '__main__':
-    unittest.main(verbosity=2)
+    unittest.main()
